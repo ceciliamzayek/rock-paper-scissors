@@ -10,14 +10,15 @@ function parseInt(num) {
   if (num === 0) return "rock";
   else if (num === 1) return "paper";
   else if (num === 2) return "scissors";
-  else return "invalid number";
+  else return "Invalid int";
 }
 
 function parseString(choice) {
   if (choice === "rock") return 0;
   else if (choice === "paper") return 1;
   else if (choice === "scissors") return 2;
-  else alert("invalid string");
+  alert("Invalid string");
+  return -1;
 }
 
 function playRound(computerChoice, playerChoice) {
@@ -34,7 +35,7 @@ function playRound(computerChoice, playerChoice) {
 
 function game() {
   let computerChoice;
-  let playerChoice;
+  let playerChoice = -1;
   let computerScore = 0;
   let playerScore = 0;
   let currentGame;
@@ -43,7 +44,8 @@ function game() {
     console.log("ROUND ", i + 1);
     console.log("---------------------------");
     computerChoice = getComputerChoice();
-    playerChoice = parseString(getPlayerChoice());
+
+    while (playerChoice < 0) playerChoice = parseString(getPlayerChoice());
 
     console.log("computer: ", parseInt(computerChoice));
     console.log("player: ", parseInt(playerChoice));
@@ -61,6 +63,7 @@ function game() {
     console.log("Computer: ", computerScore);
     console.log("Player: ", playerScore);
     console.log("---------------------------");
+    playerChoice = -1;
   }
 }
 
